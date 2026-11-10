@@ -141,13 +141,28 @@
   </g>
 
   <script type="text/javascript"><![CDATA[
-    var svg = document.documentElement;
-    function play(){ try{ svg.unpauseAnimations(); }catch(e){} }
-    function pause(){ try{ svg.pauseAnimations(); }catch(e){} }
-    function replay(){ try{ svg.setCurrentTime(0); svg.unpauseAnimations(); }catch(e){} }
-    document.getElementById('btnPlay').addEventListener('click', play);
-    document.getElementById('btnPause').addEventListener('click', pause);
-    document.getElementById('btnReplay').addEventListener('click', replay);
+    (function(){
+      // Resolve the owning <svg> element regardless of whether this file is
+      // opened standalone (documentElement IS the svg) or embedded in HTML
+      // (documentElement is <html>, so we must find the <svg> node).
+      var me = document.currentScript;
+      var svg = (me && me.ownerSVGElement) ? me.ownerSVGElement : null;
+      if (!svg) {
+        if (document.documentElement.tagName.toLowerCase() === 'svg') {
+          svg = document.documentElement;        // standalone .svg
+        } else {
+          svg = document.querySelector('svg');   // embedded in HTML
+        }
+      }
+      function hasSMIL(){ return svg && typeof svg.pauseAnimations === 'function'; }
+      function play(){ if (hasSMIL()) { try{ svg.unpauseAnimations(); }catch(e){} } }
+      function pause(){ if (hasSMIL()) { try{ svg.pauseAnimations(); }catch(e){} } }
+      function replay(){ if (hasSMIL()) { try{ svg.setCurrentTime(0); svg.unpauseAnimations(); }catch(e){} } }
+      function wire(id, fn){ var el = document.getElementById(id); if (el) { el.addEventListener('click', fn); el.style.cursor = 'pointer'; } }
+      wire('btnPlay', play);
+      wire('btnPause', pause);
+      wire('btnReplay', replay);
+    })();
   ]]></script>
 </svg>
 
