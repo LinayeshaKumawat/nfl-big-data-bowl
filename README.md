@@ -9,3 +9,7 @@ Our analysis identified 21 valid cuts across 353 receiver routes, including six 
 One notable example features Nico Collins gaining 0.67 yards of separation against C.J. Henderson following a 99° directional cut, with a measured defender reaction delay of 0.2 seconds.
 
 Because defender assignments are estimated using movement patterns rather than explicitly labeled, our tool identifies potential deception moments rather than proving that a defender was fooled.
+
+
+Still image from animation:
+<img width="1248" height="787" alt="IMG_8783" src="https://github.com/user-attachments/assets/322e52d0-3b9c-4d3e-9b20-f59aa7fc98fc" />
