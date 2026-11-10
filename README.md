@@ -1,4 +1,4 @@
-# The Route Lie Detector
+# The Route Lie Detector (Adria Farha & Linayesha Kumawat)
 
 The Route Lie Detector is an NFL tracking-data visualization tool that identifies moments when wide receivers make sharp directional cuts and gain separation from defenders in man coverage, helping broadcasters and coaches discover interesting plays.
 
