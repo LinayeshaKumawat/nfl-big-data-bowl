@@ -26,9 +26,10 @@ import csv
 import glob
 import math
 import os
+import pathlib
 from collections import defaultdict
 
-BASE = "/projects/sandbox/nfl-big-data-bowl"
+BASE = str(pathlib.Path(__file__).resolve().parent)  # repo root = this script's folder
 DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 
 # ---- thresholds (IDENTICAL to Stage 3) --------------------------------------

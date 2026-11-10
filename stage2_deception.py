@@ -32,9 +32,10 @@ Pure stdlib (offline sandbox has no pandas/matplotlib).
 """
 import csv
 import math
+import pathlib
 from collections import defaultdict
 
-BASE = "/projects/sandbox/nfl-big-data-bowl"
+BASE = str(pathlib.Path(__file__).resolve().parent)  # repo root = this script's folder
 DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 GAME_ID = "2021090900"
 TRACK = f"{DATA}/tracking_{GAME_ID}.csv"

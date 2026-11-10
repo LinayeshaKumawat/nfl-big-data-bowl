@@ -22,9 +22,10 @@ plus a small JS play/pause/restart control bar. Field is drawn to scale.
 """
 import csv
 import math
+import pathlib
 from collections import defaultdict
 
-BASE = "/projects/sandbox/nfl-big-data-bowl"
+BASE = str(pathlib.Path(__file__).resolve().parent)  # repo root = this script's folder
 DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 GAME = "2021091205"
 PLAY = "1404"
