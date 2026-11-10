@@ -1,0 +1,9 @@
+# The Route Lie Detector — dependencies
+#
+# The analysis and animation scripts use ONLY the Python standard library
+# (csv, math, glob, os, collections, xml). There are NO third-party
+# dependencies required to run the pipeline or build the animation.
+#
+# Requires: Python 3.8+
+#
+# (Intentionally empty of packages. Listed here for transparency / tooling.)
