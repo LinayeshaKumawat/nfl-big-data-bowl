@@ -12,22 +12,33 @@
 
 ---
 
-## Repository contents
+## Repository structure
 
-| File | Purpose |
-|---|---|
-| `route_lie_detector_animation.html` | **The final animated replay** (open this). |
-| `route_lie_detector_animation.svg`  | The standalone animated SVG (embedded by the HTML). |
-| `build_animation.py`     | Builds the animation from verified tracking data. |
-| `stage4_multigame.py`    | Multi-game man-coverage detector (auto-discovers all `tracking_*.csv`). |
-| `stage3_man_coverage.py` | Single-game man-coverage detector + confidence-flagged matching. |
-| `stage2_deception.py`    | Cut detection + defender matching + deception ranking (all coverages). |
-| `route_lie_detector.py`  | Stage-1: verify we can track one WR + defender through one play. |
-| `prototype_stage.py` / `diag_turns.py` | Early data-verification / threshold-calibration diagnostics. |
-| `stage4_candidate*.svg` / `stage3_man_best_*.svg` / `play97_*.svg` | Static charts for the top candidates. |
-| `games.csv`, `players.csv`, `plays.csv`, `pffScoutingData.csv` | Reference data. |
-| `tracking_<gameId>.csv` | Per-game player tracking (10 Hz x/y/speed/dir). |
-| `requirements.txt` | Dependencies (none beyond Python 3.8+ stdlib). |
+All dataset CSVs live in **`data/`**; code and generated visuals live in the repo root.
+
+```
+nfl-big-data-bowl/
+├── data/                               # all 11 dataset CSVs (inputs)
+│   ├── games.csv
+│   ├── players.csv
+│   ├── plays.csv
+│   ├── pffScoutingData.csv
+│   └── tracking_<gameId>.csv           # 7 Week-1 games (10 Hz x/y/speed/dir)
+│
+├── route_lie_detector_animation.html   # ← the final animated replay (open this)
+├── route_lie_detector_animation.svg    # standalone animated SVG (embedded by the HTML)
+├── build_animation.py                  # builds the animation from data/ (reads DATA = BASE/data)
+├── stage4_multigame.py                 # multi-game man-coverage detector; auto-discovers data/tracking_*.csv
+├── stage3_man_coverage.py              # single-game man-coverage detector + confidence-flagged matching
+├── stage2_deception.py                 # cut detection + defender matching + deception ranking (all coverages)
+├── route_lie_detector.py               # Stage-1: track one WR + defender through one play
+├── prototype_stage.py, diag_turns.py   # early data-verification / threshold-calibration diagnostics
+├── stage4_candidate*.svg, play97_*.svg # static charts for top candidates (outputs, stay in root)
+├── README.md
+└── requirements.txt                    # none beyond Python 3.8+ stdlib
+```
+
+> **Note on paths:** every script sets `BASE = "/projects/sandbox/nfl-big-data-bowl"` and reads inputs from `DATA = f"{BASE}/data"`. Generated `.svg` outputs are written to the repo root, not `data/`.
 
 ## How to view the final animation
 
@@ -40,10 +51,10 @@
 ## How to reproduce the analysis
 
 ```bash
-# from the repo folder, with the tracking_*.csv files present:
+# from the repo root, with the CSVs present in data/:
 python3 stage4_multigame.py      # prints counts + ranked candidates, writes candidate SVGs
 python3 build_animation.py       # regenerates the animated SVG for the top validated candidate
 ```
 
-More `tracking_<gameId>.csv` files (same format) can be dropped into the folder;
-`stage4_multigame.py` picks them up automatically and keeps thresholds constant.
+More `tracking_<gameId>.csv` files (same format) can be dropped into **`data/`**;
+`stage4_multigame.py` picks them up automatically (it globs `data/tracking_*.csv`) and keeps thresholds constant.

@@ -14,10 +14,11 @@ import csv
 from collections import defaultdict
 
 BASE = "/projects/sandbox/nfl-big-data-bowl"
+DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 
 # ---- 1. Pick one Week-1 game -------------------------------------------------
 week1_games = []
-with open(f"{BASE}/games.csv", newline="") as f:
+with open(f"{DATA}/games.csv", newline="") as f:
     for row in csv.DictReader(f):
         if row["week"] == "1":
             week1_games.append(row)
@@ -31,13 +32,13 @@ print("=" * 70)
 
 # ---- 2. Player lookup --------------------------------------------------------
 players = {}
-with open(f"{BASE}/players.csv", newline="") as f:
+with open(f"{DATA}/players.csv", newline="") as f:
     for row in csv.DictReader(f):
         players[row["nflId"]] = row  # keys: officialPosition, displayName, ...
 
 # ---- 3. Scouting rows for this game, indexed by playId -----------------------
 scouting_by_play = defaultdict(list)
-with open(f"{BASE}/pffScoutingData.csv", newline="") as f:
+with open(f"{DATA}/pffScoutingData.csv", newline="") as f:
     for row in csv.DictReader(f):
         if row["gameId"] == GAME_ID:
             scouting_by_play[row["playId"]].append(row)
@@ -46,7 +47,7 @@ with open(f"{BASE}/pffScoutingData.csv", newline="") as f:
 #  passResult: C=complete, I=incomplete, S=sack, IN=interception, R=scramble
 PASS_RESULTS = {"C", "I", "IN"}  # the ball was actually thrown toward a target
 plays = []
-with open(f"{BASE}/plays.csv", newline="") as f:
+with open(f"{DATA}/plays.csv", newline="") as f:
     for row in csv.DictReader(f):
         if row["gameId"] == GAME_ID and row["passResult"] in PASS_RESULTS:
             plays.append(row)
