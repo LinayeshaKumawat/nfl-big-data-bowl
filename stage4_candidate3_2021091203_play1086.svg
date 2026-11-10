@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" font-family="sans-serif">
+<rect width="960" height="480" fill="#f6fbf3"/>
+<line x1="337.8" y1="48" x2="337.8" y2="420" stroke="#d6e8cf"/>
+<line x1="672.0" y1="48" x2="672.0" y2="420" stroke="#d6e8cf"/>
+<polyline points="729.5,196.2 727.9,195.8 725.9,195.1 722.6,194.2 717.2,192.6 708.3,189.9 696.3,185.9 681.4,180.9 664.7,175.1 646.2,168.8 626.3,162.2 605.4,155.4 583.8,148.9 561.9,143.2 540.3,138.7 519.2,135.6 498.7,134.2 479.3,134.6 461.2,136.8 444.8,140.8 429.8,146.6 416.5,154.2 404.4,163.5 394.0,174.5 384.6,187.1 376.6,200.8 369.5,215.5 363.9,231.0 359.7,247.4 357.2,264.4 356.1,282.0 356.5,299.9 358.5,317.8 362.3,335.8" fill="none" stroke="#C0392b" stroke-width="2.5"/>
+<polyline points="581.8,201.1 581.1,201.1 580.2,200.6 579.1,199.9 578.0,199.1 576.7,198.1 574.6,196.5 570.9,193.5 565.1,189.2 557.0,183.6 546.8,177.0 534.5,170.0 520.5,163.1 504.9,156.6 488.2,150.8 470.4,146.3 452.1,143.4 433.2,142.2 414.5,143.1 396.0,145.9 378.1,150.6 360.8,157.0 344.3,165.2 329.1,174.9 315.5,186.0 303.7,198.3 293.7,211.5 285.2,225.3 278.3,239.6 273.0,254.1 269.0,268.5 265.9,282.5 263.2,295.8 260.5,308.1" fill="none" stroke="#2471a3" stroke-width="2.5"/>
+<circle cx="729.5" cy="196.2" r="6" fill="white" stroke="#C0392b" stroke-width="2.5"/>
+<circle cx="581.8" cy="201.1" r="6" fill="white" stroke="#2471a3" stroke-width="2.5"/>
+<circle cx="416.5" cy="154.2" r="9" fill="none" stroke="#e67e22" stroke-width="3"/>
+<text x="428.5" y="146.2" font-size="12" font-weight="bold" fill="#e67e22">CUT (+63 deg)</text>
+<line x1="416.5" y1="154.2" x2="360.8" y2="157.0" stroke="#999" stroke-dasharray="3,3"/>
+<circle cx="362.3" cy="335.8" r="5" fill="#C0392b"/>
+<circle cx="260.5" cy="308.1" r="5" fill="#2471a3"/>
+<text x="20" y="24" font-size="15" font-weight="bold" fill="#222">Route Lie Detector — MIN @ CIN play 1086</text>
+<text x="20" y="44" font-size="12" fill="#444">Adam Thielen (WR) vs Mike Hilton (CB) — Cover-1 | match: HIGH</text>
+<text x="20" y="460" font-size="12" fill="#555">sep 0.73->+0.5s 1.14yd (gain +0.41); def lag 0.2s (consistent-with, not proof)</text>
