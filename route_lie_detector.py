@@ -14,21 +14,22 @@ import math
 from collections import defaultdict
 
 BASE = "/projects/sandbox/nfl-big-data-bowl"
+DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 GAME_ID = "2021090900"
-TRACK = f"{BASE}/tracking_{GAME_ID}.csv"
+TRACK = f"{DATA}/tracking_{GAME_ID}.csv"
 
 # ----------------------------------------------------------------------------
 # 1. Reference data: players + scouting roles for this game
 # ----------------------------------------------------------------------------
 players = {}
-with open(f"{BASE}/players.csv", newline="") as f:
+with open(f"{DATA}/players.csv", newline="") as f:
     for row in csv.DictReader(f):
         players[row["nflId"]] = row
 
 # scouting role per (playId, nflId) for this game
 role = {}           # (playId, nflId) -> pff_role
 linedup = {}        # (playId, nflId) -> pff_positionLinedUp
-with open(f"{BASE}/pffScoutingData.csv", newline="") as f:
+with open(f"{DATA}/pffScoutingData.csv", newline="") as f:
     for row in csv.DictReader(f):
         if row["gameId"] == GAME_ID:
             role[(row["playId"], row["nflId"])] = row["pff_role"]
@@ -36,7 +37,7 @@ with open(f"{BASE}/pffScoutingData.csv", newline="") as f:
 
 # play metadata
 play_meta = {}
-with open(f"{BASE}/plays.csv", newline="") as f:
+with open(f"{DATA}/plays.csv", newline="") as f:
     for row in csv.DictReader(f):
         if row["gameId"] == GAME_ID:
             play_meta[row["playId"]] = row

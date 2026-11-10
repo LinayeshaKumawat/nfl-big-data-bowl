@@ -35,8 +35,9 @@ import math
 from collections import defaultdict
 
 BASE = "/projects/sandbox/nfl-big-data-bowl"
+DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 GAME_ID = "2021090900"
-TRACK = f"{BASE}/tracking_{GAME_ID}.csv"
+TRACK = f"{DATA}/tracking_{GAME_ID}.csv"
 
 # ---- tunables ---------------------------------------------------------------
 HZ = 10                      # frames per second
@@ -55,19 +56,19 @@ UNCERTAIN_RATIO = 0.80       # if 2nd-best match score >= 0.8*best -> uncertain
 
 # ---- reference tables -------------------------------------------------------
 players = {}
-with open(f"{BASE}/players.csv", newline="") as f:
+with open(f"{DATA}/players.csv", newline="") as f:
     for row in csv.DictReader(f):
         players[row["nflId"]] = row
 
 role, linedup = {}, {}
-with open(f"{BASE}/pffScoutingData.csv", newline="") as f:
+with open(f"{DATA}/pffScoutingData.csv", newline="") as f:
     for row in csv.DictReader(f):
         if row["gameId"] == GAME_ID:
             role[(row["playId"], row["nflId"])] = row["pff_role"]
             linedup[(row["playId"], row["nflId"])] = row["pff_positionLinedUp"]
 
 play_meta = {}
-with open(f"{BASE}/plays.csv", newline="") as f:
+with open(f"{DATA}/plays.csv", newline="") as f:
     for row in csv.DictReader(f):
         if row["gameId"] == GAME_ID:
             play_meta[row["playId"]] = row

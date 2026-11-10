@@ -29,6 +29,7 @@ import os
 from collections import defaultdict
 
 BASE = "/projects/sandbox/nfl-big-data-bowl"
+DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 
 # ---- thresholds (IDENTICAL to Stage 3) --------------------------------------
 HZ = 10
@@ -47,25 +48,25 @@ MATCH_MARGIN = 0.25
 
 # ---- reference tables (shared across games) ---------------------------------
 players = {}
-with open(f"{BASE}/players.csv", newline="") as f:
+with open(f"{DATA}/players.csv", newline="") as f:
     for row in csv.DictReader(f):
         players[row["nflId"]] = row
 
 # role/linedup keyed by (gameId, playId, nflId); meta keyed by (gameId, playId)
 role, linedup = {}, {}
-with open(f"{BASE}/pffScoutingData.csv", newline="") as f:
+with open(f"{DATA}/pffScoutingData.csv", newline="") as f:
     for row in csv.DictReader(f):
         k = (row["gameId"], row["playId"], row["nflId"])
         role[k] = row["pff_role"]
         linedup[k] = row["pff_positionLinedUp"]
 
 play_meta = {}
-with open(f"{BASE}/plays.csv", newline="") as f:
+with open(f"{DATA}/plays.csv", newline="") as f:
     for row in csv.DictReader(f):
         play_meta[(row["gameId"], row["playId"])] = row
 
 game_label = {}
-with open(f"{BASE}/games.csv", newline="") as f:
+with open(f"{DATA}/games.csv", newline="") as f:
     for row in csv.DictReader(f):
         game_label[row["gameId"]] = f"{row['visitorTeamAbbr']} @ {row['homeTeamAbbr']}"
 
@@ -279,7 +280,7 @@ def analyze_game(track_path, gid):
 
 
 # ---- discover & run all available games ------------------------------------
-track_files = sorted(glob.glob(f"{BASE}/tracking_*.csv"))
+track_files = sorted(glob.glob(f"{DATA}/tracking_*.csv"))
 print(f"Tracking files found: {len(track_files)}")
 for tf in track_files:
     gid = os.path.basename(tf)[len("tracking_"):-len(".csv")]

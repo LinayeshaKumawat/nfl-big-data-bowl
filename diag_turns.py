@@ -5,20 +5,21 @@ import csv, math
 from collections import defaultdict
 
 BASE = "/projects/sandbox/nfl-big-data-bowl"
+DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 GAME_ID = "2021090900"
 role = {}
-with open(f"{BASE}/pffScoutingData.csv", newline="") as f:
+with open(f"{DATA}/pffScoutingData.csv", newline="") as f:
     for r in csv.DictReader(f):
         if r["gameId"] == GAME_ID:
             role[(r["playId"], r["nflId"])] = r["pff_role"]
 players = {}
-with open(f"{BASE}/players.csv", newline="") as f:
+with open(f"{DATA}/players.csv", newline="") as f:
     for r in csv.DictReader(f):
         players[r["nflId"]] = r
 
 plays = defaultdict(lambda: defaultdict(dict))
 events = defaultdict(dict)
-with open(f"{BASE}/tracking_{GAME_ID}.csv", newline="") as f:
+with open(f"{DATA}/tracking_{GAME_ID}.csv", newline="") as f:
     for r in csv.DictReader(f):
         pid, fid, nid = r["playId"], int(r["frameId"]), r["nflId"]
         if r["event"] not in ("", "None"):

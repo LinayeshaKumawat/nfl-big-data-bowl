@@ -25,6 +25,7 @@ import math
 from collections import defaultdict
 
 BASE = "/projects/sandbox/nfl-big-data-bowl"
+DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 GAME = "2021091205"
 PLAY = "1404"
 WR = "53518"   # Nico Collins (verified)
@@ -39,10 +40,10 @@ DEF_REACT_MAXLAG = 12
 FRAME_MS = 100  # 10 Hz -> 100 ms/frame real-time
 
 # ---- names/teams (verified) -------------------------------------------------
-players = {r["nflId"]: r for r in csv.DictReader(open(f"{BASE}/players.csv"))}
-games = {r["gameId"]: r for r in csv.DictReader(open(f"{BASE}/games.csv"))}
+players = {r["nflId"]: r for r in csv.DictReader(open(f"{DATA}/players.csv"))}
+games = {r["gameId"]: r for r in csv.DictReader(open(f"{DATA}/games.csv"))}
 pm = None
-for r in csv.DictReader(open(f"{BASE}/plays.csv")):
+for r in csv.DictReader(open(f"{DATA}/plays.csv")):
     if r["gameId"] == GAME and r["playId"] == PLAY:
         pm = r
 WR_NAME = players[WR]["displayName"]
@@ -55,7 +56,7 @@ COVERAGE = pm["pff_passCoverage"]
 # ---- load tracking for this play -------------------------------------------
 def load():
     wr, df, ev = {}, {}, {}
-    with open(f"{BASE}/tracking_{GAME}.csv", newline="") as f:
+    with open(f"{DATA}/tracking_{GAME}.csv", newline="") as f:
         for r in csv.DictReader(f):
             if r["playId"] != PLAY:
                 continue
