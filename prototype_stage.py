@@ -11,9 +11,10 @@ Everything here is the join/selection logic that feeds the plot the moment a
 tracking file is available.
 """
 import csv
+import pathlib
 from collections import defaultdict
 
-BASE = "/projects/sandbox/nfl-big-data-bowl"
+BASE = str(pathlib.Path(__file__).resolve().parent)  # repo root = this script's folder
 DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 
 # ---- 1. Pick one Week-1 game -------------------------------------------------

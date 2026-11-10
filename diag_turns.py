@@ -2,9 +2,10 @@
 """Diagnostic: what do WR heading-change magnitudes actually look like?
 Helps calibrate the cut threshold/window instead of guessing."""
 import csv, math
+import pathlib
 from collections import defaultdict
 
-BASE = "/projects/sandbox/nfl-big-data-bowl"
+BASE = str(pathlib.Path(__file__).resolve().parent)  # repo root = this script's folder
 DATA = f"{BASE}/data"   # all dataset CSVs live in data/
 GAME_ID = "2021090900"
 role = {}
